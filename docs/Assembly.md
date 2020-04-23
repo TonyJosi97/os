@@ -10,3 +10,8 @@
 
 `$$` refers to the address of the 1st line (where our section started). 
 
+## Data
+
+* DB - Define Byte. 8 bits
+* DW - Define Word. Generally 2 bytes on a typical x86 32-bit system
+* DD - Define double word. Generally 4 bytes on a typical x86 32-bit system
