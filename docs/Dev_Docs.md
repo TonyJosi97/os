@@ -1,3 +1,6 @@
+
+`At this low level, we have a lot of power and responsibility over our computer, so we need to learn how to control it.`
+
 ## BIOS
 
 When the computer boots, the BIOS doesn't know how to load the OS, so it delegates that task to the boot sector. Thus, the boot sector must be placed in a known, standard location. That location is the first sector of the disk (cylinder 0, head 0, sector 0) and it takes 512 bytes.
