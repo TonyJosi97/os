@@ -56,7 +56,7 @@ The convention is to declare strings as null-terminating, which means we always 
 
 ``` asm
 my_string:
-db ’Booting OS’,0
+    db ’Booting OS’,0
 ```
 
-When later iterating through a string, perhaps to print each of its characters in turn, we can easily determine when we have reached the end.```
+When later iterating through a string, perhaps to print each of its characters in turn, we can easily determine when we have reached the end.
