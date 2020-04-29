@@ -15,3 +15,7 @@ Again, an unsophisticated means is adopted here by BIOS, whereby the last two by
 To compile: `nasm -f bin boot_sect_simple.asm -o boot_sect_simple.bin`
 
 Run: qemu-system-x86_64 boot_sect_simple.bin
+
+## 16-bit Real Mode
+
+For backward compatibility, it is important that CPUs boot initially in 16-bit real mode, requiring modern operating systems explicitly to switch up into the more advanced 32-bit (or 64-bit) protected mode, but allowing older operating systems to carry on, blissfully unaware that they are running on a modern CPU
