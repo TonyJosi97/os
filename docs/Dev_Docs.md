@@ -60,3 +60,9 @@ my_string:
 ```
 
 When later iterating through a string, perhaps to print each of its characters in turn, we can easily determine when we have reached the end.
+
+## Using the Stack
+
+The stack is really just a simple solution to the following inconvenience: the CPU has a limited number of registers for the temporary storage of our routine’s local variables, but we often need more temporary storage than will fit into these registers; now, we can obviously make use of main memory, but specifying specific memory addresses when reading and writing is inconvenient, especially since we do not care exactly where the data is to be stored, only that we can retrieve it easily enough.
+
+The stack is implemented by two special CPU registers, bp and sp, which maintain the addresses of the stack base (i.e. the stack bottom) and the stack top respectively. Since the stack expands as we push data onto it, we usually set the stack’s base far away from important regions of memory (e.g. such as BIOS code or our code) so their is no danger of overwriting if the stack grows too large. One confusing thing about the stack is that it actually grows downwards from the base pointer, so when we issue a push, the value actually gets stored below --- and not above --- the address of bp, and sp is decremented by the value’s size.
