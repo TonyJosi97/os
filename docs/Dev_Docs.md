@@ -37,12 +37,26 @@ BIOS has already being doing initialisation work on the computer long before it 
 
 ![Memory Layout](https://github.com/TonyJosi97/os/blob/master/docs/resources/Typical%20lower%20memory%20layout%20after%20boot.png)
 
-## Adding base memory with offset for labels
+## Adding base memory with offset for labels - `[org 0x7c00]`
 
 BIOS does indeed load our boot sector to the address
 0x7c00, and we have also seen how addressing and assembly code labels are related.
 It is inconvenient to always have to account for this label--memory offset in your code, so many assemblers will correct label references during assemblege if you include the following instruction at the top of your code, telling it exactly where you expect the
 code to loaded in memory:
+
 `[org 0x7c00]`
 
 It asks the assembler to make the literal map to exact location in memory.
+
+The ORG instruction is used to provide a "hint" to the assembler and the linker for the resulting object file. It allows you to specify the base address of the section of the file.
+
+## Defining Strings
+
+The convention is to declare strings as null-terminating, which means we always declare the last byte of the string as 0, as follows:
+
+``` asm
+my_string:
+db ’Booting OS’,0
+```
+
+When later iterating through a string, perhaps to print each of its characters in turn, we can easily determine when we have reached the end.```
