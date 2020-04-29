@@ -36,3 +36,11 @@ As it turns out, BIOS likes always to load the boot sector to the address `0x7c0
 BIOS has already being doing initialisation work on the computer long before it loaded our code, and will actually continue to service hardware interrupts for the clock, disk drives, and so on. So these BIOS routines (e.g. ISRs, services for screen printing, etc.) themselves must be stored somewhere in memory and must be preserved (i.e. not overwritten) whilst they are still of use.
 
 ![Memory Layout](https://github.com/TonyJosi97/os/blob/master/docs/resources/Typical%20lower%20memory%20layout%20after%20boot.png)
+
+## Adding base memory with offset for labels
+
+BIOS does indeed load our boot sector to the address
+0x7c00, and we have also seen how addressing and assembly code labels are related.
+It is inconvenient to always have to account for this label--memory offset in your code, so many assemblers will correct label references during assemblege if you include the following instruction at the top of your code, telling it exactly where you expect the
+code to loaded in memory:
+`[org 0x7c00]`
