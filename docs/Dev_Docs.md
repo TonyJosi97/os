@@ -44,3 +44,5 @@ BIOS does indeed load our boot sector to the address
 It is inconvenient to always have to account for this label--memory offset in your code, so many assemblers will correct label references during assemblege if you include the following instruction at the top of your code, telling it exactly where you expect the
 code to loaded in memory:
 `[org 0x7c00]`
+
+It asks the assembler to make the literal map to exact location in memory.
