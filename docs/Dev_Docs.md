@@ -19,3 +19,9 @@ Run: qemu-system-x86_64 boot_sect_simple.bin
 ## 16-bit Real Mode
 
 For backward compatibility, it is important that CPUs boot initially in 16-bit real mode, requiring modern operating systems explicitly to switch up into the more advanced 32-bit (or 64-bit) protected mode, but allowing older operating systems to carry on, blissfully unaware that they are running on a modern CPU
+
+## Interupts 
+
+BIOS adds some of its own ISRs to the interrupt vector that specialise in certain aspects of the computer, for example: interrupt 0x10 causes the screen-related ISR to be invoked; and interrupt 0x13, the disk-related I/O ISR.
+However, it would be wasteful to allocate an interrupt per BIOS routine, so BIOS multiplexes the ISRs by what we could imagine as a big switch statement, based usually on the value set in one of the CPUs general 
+purpose registers, ax, prior to raising the interrupt.
