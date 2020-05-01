@@ -90,3 +90,16 @@ some_function:
     mov bx, 10 add bx, 20 mov ah, 0x0e int 0x10 popa
     ret
 ```
+
+## Include Files
+
+After slaving away even on the seemingly simplest of assembly routines, you will likely want to reuse your code in multiple programs. nasm allows you to include external files literally as follows:
+
+``` asm
+%include "my_print_function.asm" ; this will simply get replaced by 
+; the contents of the file
+...
+mov al, ’H’ ; Store ’H’ in al so our function will print it. 
+call my_print_function
+
+```
