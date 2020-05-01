@@ -78,3 +78,15 @@ When later iterating through a string, perhaps to print each of its characters i
 At the CPU level a function is nothing more than a jump to the address of a useful routine then a jump back again to the instruction immediately following the first jump.
 
 The caller code could store the correct return address (i.e. the address immediately after the call) in some well-known location, then the called code could jump back to that stored address. The CPU keeps track of the current instruction being executed in the special register ip (instruction pointer), which, sadly, we cannot access directly. However, the CPU provides a pair of instructions, call and ret, which do exactly what we want: call behaves like jmp but additionally, before actually jumping, pushes the return address on to the stack; ret then pops the return address off the stack and jumps to it.
+
+When we call a function, such as a print function, within our assembly program, internally that function may alter the values of several registers to perform its job (indeed, with registers being a scarce resource, it will almost certainly do this), so when our program returns from the function call it may not be safe to assume, say, the value we stored in dx will still be there.
+
+It is often sensible (and polite), therefore, for a function immediately to push any registers it plans to alter onto the stack and then pop them off again (i.e. restore the registers’ original values) immediately before it returns. Since a function may use many of the general purpose registers, the CPU implements two convenient instructions, `pusha` and `popa`, that conveniently push and pop all registers to and from the stack respectively.
+
+Examlmple: 
+``` asm
+some_function:
+    pusha
+    mov bx, 10 add bx, 20 mov ah, 0x0e int 0x10 popa
+    ret
+```
