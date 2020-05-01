@@ -103,3 +103,5 @@ mov al, ’H’ ; Store ’H’ in al so our function will print it.
 call my_print_function
 
 ```
+
+**IMP: remember to include subroutines below the hang ie, jmp $**
