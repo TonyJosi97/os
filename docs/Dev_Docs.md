@@ -50,17 +50,6 @@ It asks the assembler to make the literal map to exact location in memory.
 
 The ORG instruction is used to provide a "hint" to the assembler and the linker for the resulting object file. It allows you to specify the base address of the section of the file.
 
-## Defining Strings
-
-The convention is to declare strings as null-terminating, which means we always declare the last byte of the string as 0, as follows:
-
-``` asm
-my_string:
-    db ’Booting OS’,0
-```
-
-When later iterating through a string, perhaps to print each of its characters in turn, we can easily determine when we have reached the end.
-
 ## Using the Stack
 
 The stack is really just a simple solution to the following inconvenience: the CPU has a limited number of registers for the temporary storage of our routine’s local variables, but we often need more temporary storage than will fit into these registers; now, we can obviously make use of main memory, but specifying specific memory addresses when reading and writing is inconvenient, especially since we do not care exactly where the data is to be stored, only that we can retrieve it easily enough.

@@ -62,3 +62,19 @@ INT 10h, INT 10H or INT 16 is shorthand for BIOS interrupt call 10hex, the 17th 
 
 To use this call, load AH with the number of the desired subfunction, load other required parameters in other registers, and make the call. INT 10h is fairly slow, so many programs bypass this BIOS routine and access the display hardware directly. Setting the video mode, which is done infrequently, can be accomplished by using the BIOS, while drawing graphics on the screen in a game needs to be done quickly, so direct access to video RAM is more appropriate than making a BIOS call for every pixel.
 
+## Defining Strings
+
+The convention is to declare strings as null-terminating, which means we always declare the last byte of the string as 0, as follows:
+
+``` asm
+my_string:
+    db ’Booting OS’,0
+```
+
+When later iterating through a string, perhaps to print each of its characters in turn, we can easily determine when we have reached the end.
+
+## Function Calls
+
+At the CPU level a function is nothing more than a jump to the address of a useful routine then a jump back again to the instruction immediately following the first jump.
+
+The caller code could store the correct return address (i.e. the address immediately after the call) in some well-known location, then the called code could jump back to that stored address. The CPU keeps track of the current instruction being executed in the special register ip (instruction pointer), which, sadly, we cannot access directly. However, the CPU provides a pair of instructions, call and ret, which do exactly what we want: call behaves like jmp but additionally, before actually jumping, pushes the return address on to the stack; ret then pops the return address off the stack and jumps to it.
