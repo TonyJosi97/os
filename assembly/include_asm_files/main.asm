@@ -15,9 +15,13 @@ call print_string
 
 call print_nl
 
+mov dx, 0x12fe
+call print_hex
+
 jmp $
 
 %include "print_func.asm"
+%include "print_hex.asm"
 
 ; Data
 
